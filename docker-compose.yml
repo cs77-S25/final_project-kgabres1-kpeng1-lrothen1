@@ -16,7 +16,7 @@ services:
         - "traefik.http.routers.swatreview.rule=Host(`swatreview.sccs.swarthmore.edu`)"
         - "traefik.http.routers.swatreview.tls=true"
         - "traefik.http.routers.swatreview.tls.certresolver=letsEncrypt"
-        - "traefik.http.services.swatreview.loadbalancer.server.port=6000"
+        - "traefik.http.services.swatreview.loadbalancer.server.port=5000"
     networks:
       - internal
       - traefik
