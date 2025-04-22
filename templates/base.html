@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+{% block head %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %} | SharpBites</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/home.js') }}" defer></script>
+</head>
+{% endblock %}
+<body>
+    <div id="header">
+        <a id="home" href ="{{ url_for('home') }}">
+            <img src = "{{ url_for('static', filename='images/logo2.png') }}">
+        <h1>SharpBites</h1>
+        </a>
+
+        <!-- hamburger sign is &#9776  --> 
+        <input type="checkbox" id="menu-toggle" />
+        <label for="menu-toggle" class="hamburger">&#9776;</label>
+        <ul class="menu">
+                <li><a class="link" href="{{ url_for('menu') }}">Menu</a></li>
+                <li><a class="link" href="{{ url_for('rankings') }}">Rankings</a></li>
+                {% if session['user_id'] %}
+                    <li>
+                        <a class="link" href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+                    <li>
+                        <!--<a class="link" href="{{ url_for('login') }}">{{ session['username'] }}</a> --> 
+                        <a class="link username-link" href="{{ url_for('profile') }}">{{ session['username'] }}</a>
+                    </li>
+                    {% else %}
+                    <li><a class="link" href="{{ url_for('register') }}">Register</a></li>
+                    <li>
+                        <a class="link" href="{{ url_for('login') }}">Login</a>
+                    </li>
+                    {% endif %}
+
+        </ul>
+
+    
+    <!--
+    <div>
+        <label for='menu'>
+            =
+        </label>   
+    </div>
+    */
+     --> 
+
+    </div>
+    {% block content %}
+    {% endblock %}
+    <footer>
+        <p>&copy Copyright 2025</p>
+    </footer>
+</body>
+</html>

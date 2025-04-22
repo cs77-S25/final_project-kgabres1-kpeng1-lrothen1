@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block head %}
+  {{ super() }}
+  <script src="{{ url_for('static', filename='js/menu.js') }}" defer></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/menu.css') }}">
+
+    <!-- Choices.js CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+  <!-- Choices.js Script -->
+  <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+
+  {% endblock %}
+
+{% block title %}Menu{% endblock %}
+
+{% block content %}
+<ul id="meal_times">
+  <li class="link">Breakfast</li>
+  <li class="link">Brunch</li>
+  <li class="link">Lunch</li>
+  <li class="link">Dinner</li>
+  <li class="link" style="background-color:#778da9">Any</li>
+</ul>
+<div class="filter-controls">
+  
+  <select id="filter-property" multiple>
+    
+    <option value="egg">Egg</option>
+    <option value="fish">Fish</option>
+    <option value="glutenfree">Gluten Free</option>
+    <option value="halal">Halal</option>
+    <option value="kosher">Kosher</option>
+    <option value="locallysourced">Locally Sourced</option>
+    <option value="milk">Milk</option>
+    <option value="pork">Pork</option>
+    <option value="sesame">Sesame</option>
+    <option value="shellfish">Shellfish</option>
+    <option value="soy">Soy</option>
+    <option value="treenut">Tree Nut</option>
+    <option value="vegan">Vegan</option>
+    <option value="vegetarian">Vegetarian</option>
+    <option value="wheat">Wheat</option>
+
+  </select>
+
+  <select id="filter-logic">
+    <option value="any">Match ANY property</option>
+    <option value="all">Match ALL properties</option>
+  </select>
+
+  <button id="apply-filter">Apply</button>
+  <button id="clear-filter">Clear</button>
+</div>
+
+  <div class="selected-filters" id="selected-filters-container"></div>
+
+
+
+
+  <!-- Filter breakfast,lunch, and dinner -->
+
+
+  <main class="menu-container">
+    <h1>Today's Menu</h1>
+    <p id="filterbtn">Show Filters</p>
+    <!-- <div class="time-filters"> -->
+     <!--<h3>Meal Time</h3>--> 
+     <!-- <div class="time-options">
+      <label class="time-tooltip">
+        <input type="checkbox" name="time-filter" value="Breakfast"> Breakfast
+        <span class="tooltip-text">7:00am – 10:00am</span>
+      </label>
+      <label class="time-tooltip">
+        <input type="checkbox" name="time-filter" value="Brunch"> Brunch
+        <span class="tooltip-text">10:30am – 1:00pm, only available at weekends</span>
+      </label>
+      <label class="time-tooltip">
+        <input type="checkbox" name="time-filter" value="Lunch"> Lunch
+        <span class="tooltip-text">11:00am – 2:00pm</span>
+      </label>
+      <label class="time-tooltip">
+        <input type="checkbox" name="time-filter" value="Dinner"> Dinner
+        <span class="tooltip-text">4:30pm – 9:00pm</span>
+      </label>
+    </div>
+    </div> -->
+    <div id="menu-content">
+      <div class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading today's dishes...</p>
+      </div>
+    </div>
+
+    <template id="error-template">
+      <div class="error-message">
+        <p>Failed to load menu. Please try again later.</p>
+        <button id="retry-button">Retry</button>
+      </div>
+    </template>
+  </main>
+{% endblock %}
+
+

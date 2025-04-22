@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block head %}
+    {{ super() }}
+    <title>Home</title>
+<script src="{{ url_for('static', filename='js/home.js') }}" defer></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/home.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/menu.css') }}">
+{% endblock %}
+
+{% block title %} Home {% endblock %}
+
+
+{%block content %}
+    <div class="greeting">
+        <h1>Welcome {% if session['user_id'] %} back,  {{ session['username'] }}! {% endif %}</h1>
+        <h4>Today's Recommendations:</h4>
+    </div>
+    <section class="menu-container">
+    {% for  dish in dishes%}
+        {% if dish.rating %}
+          <section class="restaurant-card" data-icons="shellfish">
+            <h2>{{dish.name}}</h2>
+            <div id="container">
+              <span class="rating-score">{{dish.rating}}</span>
+              {% for i in range(5) %}
+              {% if i > dish.rating - 1%}
+                  <p class="stillstars inactive">★</p>
+              {% else %}
+                  <p class="stillstars active">★</p>
+              {% endif %}
+              {% endfor %}
+            </div>
+            <div class="restaurant-actions">
+              <a href="{{ url_for('rate', food_name=dish.name) }}" class="btn">Write a Review</a>
+              <a href="{{ url_for('reviews', food_name=dish.name) }}" class="btn">Read Reviews</a>
+            </div>
+          </section>
+  
+        {% endif%}
+    {% endfor %}
+  </section>
+   
+    <h3 id="foodCategory">Vegan</h3>
+
+    <section class="menu-container">
+      {% for  dish in vegan%}
+          {% if dish.rating %}
+            <section class="restaurant-card" data-icons="shellfish">
+              <h2>{{dish.name}}</h2>
+              <div id="container">
+                <span class="rating-score">{{dish.rating}}</span>
+                {% for i in range(5) %}
+                {% if i > dish.rating - 1%}
+                    <p class="stillstars inactive">★</p>
+                {% else %}
+                    <p class="stillstars active">★</p>
+                {% endif %}
+                {% endfor %}
+              </div>
+              <div class="restaurant-actions">
+                <a href="{{ url_for('rate', food_name=dish.name) }}" class="btn">Write a Review</a>
+                <a href="{{ url_for('reviews', food_name=dish.name) }}" class="btn">Read Reviews</a>
+              </div>
+            </section>
+    
+          {% endif%}
+      {% endfor %}
+    </section>
+
+    
+    <a class="menu-button" href ="{{ url_for('menu') }}">
+      <h4>Click to see today's Menu</h4>
+       <!-- <img src = "{{ url_for('static', filename='images/menu.png') }}">-->
+    </a>
+{% endblock %}
+
+

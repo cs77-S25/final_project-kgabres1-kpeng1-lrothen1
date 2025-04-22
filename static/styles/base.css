@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+    background-color: #1B263B; 
+    color: #E0E1DD;
+    font-family: "Larsseit",Helvetica,Arial,sans-serif;
+    display: block;
+    overflow-y: scroll;
+    margin:0;
+    overflow-x: hidden;
+} 
+#header {
+    display: flex;
+    white-space: nowrap;
+    width: 100vw;
+    padding: 3px;
+    color: #E0E1DD;
+    align-items: center;
+    z-index: 4;
+    background-color: #0D1B2A;
+    position:relative;
+    margin-bottom: 10px;
+}
+#header ul {
+    list-style-type: none;
+    margin-left: auto;
+    align-content: center;
+    padding-right: 5%;
+}
+
+#header li {
+    display: inline-block;
+    margin-right: 20px;
+}
+#header img {
+    height: 60px;
+    padding:1px;
+}
+#header a {
+    text-decoration: none;
+    align-items: center;
+    border-radius: 3px;
+    padding: 5px;
+    display:flex;
+    color: #E0E1DD;
+}
+#header h1 {
+    font-size: larger;
+}
+#header .link:hover {
+    color: #778da9;
+    transition: color 0.2s ease-in-out;
+}
+#home:hover {
+    background-color: none;
+}
+
+footer {
+    position: fixed;
+    display:block;
+    width:100vw;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    background-color: #0D1B2A;
+}
+footer p {
+    margin:5px;
+    float: left;
+}
+
+#header .dropdown {
+    display: none;
+}
+
+
+/* This is for the full computer interface */
+#menu-toggle {
+    display: none;
+}
+  
+.hamburger {
+    display: none;
+    font-size: 2rem;
+    margin-left: auto;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+
+/* This is for the mobile interface  */
+@media (max-width: 40em) {
+    .hamburger {
+      display: block;
+    }
+  
+    #header .menu {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      background-color: #0D1B2A;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin:0;
+      padding:2vw;
+    }
+    
+    #menu-toggle:checked + .hamburger + .menu {     /* Core CSS logic - only show hamburger when toggle switched on! */
+      display: flex;
+    }
+    
+
+    #header li {
+      margin: 10px 0;
+      text-align: center;
+      margin:auto;
+    }
+  }
+
+
+
+
+  

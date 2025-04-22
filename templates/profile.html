@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/profile.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+  <div class="profile-header">
+    <div class="user-info">
+      <h1>{{ user.username }}'s Food Journey</h1>
+      <div class="stats">
+        <div class="stat-box">
+          <span class="stat-number">{{ reviews|length }}</span>
+          <span class="stat-label">Total Ratings</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number">{{ "%.1f" % (avg_rating or 0) }}</span>
+          <span class="stat-label">Avg Rating</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ratings-container">
+    {% if reviews %}
+      {% for review in reviews %}
+      <div class="rating-card">  
+        <div class="rating-content">
+          <div class="dish-header">
+            <h3>{{ review.dish.name }}</h3>
+            <div class="dish-meta">
+              <span class="location">{{ review.dish.location }}</span>
+              <span class="meal-time">{{ review.dish.time }}</span>
+            </div>
+          </div>
+          
+          <div class="rating-display">
+            <div class="stars">
+              {% for i in range(5) %}
+                <span class="star {% if i < review.rating %}filled{% endif %}">★</span>
+              {% endfor %}
+              <span class="rating-value">{{ review.rating }}</span>
+            </div>
+            {% if review.content %}
+            <p class="review-text">"{{ review.content }}"</p>
+            {% endif %}
+          </div>
+          
+          <div class="rating-footer">
+            <span class="date">{{ review.date.strftime('%b %d, %Y') }}</span>
+            <a href="/reviews/{{ review.dish.name|urlencode }}" class="view-btn">View Dish</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <div class="empty-state">
+        <h3>No Ratings Yet</h3>
+        <p>Start exploring and rate your favorite dishes!</p>
+        <a href="/menu" class="explore-btn">Browse Menu</a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

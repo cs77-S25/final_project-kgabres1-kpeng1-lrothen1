@@ -1,0 +1,104 @@
+
+form {
+    width:100vw;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 5vw;
+    
+}
+
+textarea {
+    width:90vw;
+    height:40vw;
+    margin:3vw;
+    resize: none;
+    overflow-y: scroll;
+    font-size: large;
+}
+
+
+.stars {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    font-size: xx-large;
+    margin-bottom: 20px;
+}
+
+.star {
+    cursor: pointer;
+}
+.star.still {
+  color:gold;
+}
+.star.hovered {
+    color: gold;
+    transition: color 0.2s ease-in-out;
+}
+.stillstars {
+    color: gold;
+}
+
+/* CSS */
+/* button {
+  appearance: none;
+  background-color: #707070;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 40px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  will-change: transform;
+  margin:20px;
+}
+
+button:disabled {
+  pointer-events: none;
+}
+
+button:hover {
+  box-shadow: rgba(135, 40, 40, 0.259) 0 8px 15px;
+  transform: translateY(-2px);
+  background-color: rgb(135, 40, 40);
+} */
+
+button:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+button {
+  background-color: #415a77; 
+  color: #E0E1DD;
+  border: none;
+  border-radius: 4px;
+  padding: 0.4rem 0.8rem;
+  margin-right: 0.5rem;
+  margin-top: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+button:hover {
+  background-color: #778da9;
+}
+

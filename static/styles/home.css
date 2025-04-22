@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #E0E1DD;
+    text-align: center;
+  }
+
+  #foodCategory {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  /* carousel */
+  .carousel-wrapper {
+    position: relative;
+    max-width: 80vw;
+    margin: 0 auto 2rem;
+    overflow: hidden;
+  }
+  
+  .carousel-track {
+    display: flex;
+    scroll-behavior: smooth;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+  
+  .restaurant-card {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    margin: 0 0.5rem;
+  }
+  
+  .carousel-btn {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.4);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    z-index: 1;
+  }
+  
+  .carousel-btn.left {
+    left: 0;
+  }
+  
+  .carousel-btn.right {
+    right: 0;
+  }
+
+  .menu-button img {
+    height: 20vw;
+    max-height: 130px;
+    margin:10px;
+}
+  .menu-button {
+    text-decoration: none;
+    align-items: center;
+    border-radius: 3px;
+    padding: 10px;
+    color: #E0E1DD;
+}
+
+.stillstars.active{
+  color: gold; 
+  font-size: 1.1rem;
+}
+
+.stillstars.inactive{
+  color: gray;
+  font-size: 1.1rem;
+}
+
+#container {
+  display: flex;
+}

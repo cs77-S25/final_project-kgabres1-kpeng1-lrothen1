@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block head %}
+    {{ super() }}
+<script src="{{ url_for('static', filename='js/home.js') }}" defer></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/rankings.css') }}" defer>
+<script src="{{ url_for('static', filename='js/rankings.js') }}" defer></script>
+{% endblock %}
+
+{% block title %} Rankings {% endblock %}
+
+{% block content %}
+<ul id="meal_times">
+  <li class="link">Breakfast</li>
+  <li class="link">Brunch</li>
+  <li class="link">Lunch</li>
+  <li class="link">Dinner</li>
+  <li class="link" style="background-color:#778da9">Any</li>
+</ul>
+<main class="menu-container">
+  <div class="rankings-header">
+    <h1 id="title">All-Time Rankings</h1>
+    
+    <div class="toggle-container">
+      <span class="toggle-label active">All Time</span>
+      <label class="toggle-switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
+      <span class="toggle-label">Today's Menu</span>
+    </div>
+  </div>
+
+  
+  <div class="loading-spinner">
+    <div class="spinner"></div>
+    <p>Loading rankings...</p>
+  </div>
+</main>
+{% endblock %}

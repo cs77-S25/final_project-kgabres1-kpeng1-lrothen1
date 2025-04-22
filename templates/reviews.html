@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{ super() }}
+    <title>Reviews</title>
+    <script src="{{ url_for('static', filename='js/home.js') }}" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/reviews.css') }}">
+{% endblock %}
+
+{% block title %} Reviews {% endblock %}
+
+{% block content %}
+<main>
+{% if dish %}
+  <h1 id="title">{{ food }}</h1>
+  <div id="overview">
+    {% if dish.rating is none %}
+      <p class="no-rating-msg">No ratings yet</p>
+    {% else %}
+      <p>{{ dish.rating }}</p>
+      {% for i in range(5) %}
+        {% if i > dish.rating - 1 %}
+          <p id="mainstar" class="stillstars inactive">★</p>
+        {% else %}
+          <p id="mainstar" class="stillstars active">★</p>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  {% if reviews|length == 0 %}
+    <p style="margin-top: 1rem; text-align: center;">No reviews yet. Be the first to write one!</p>
+  {% endif %}
+  {% if session.get('user_id') %}
+    <div class="write-review-container">
+      <a href="{{ url_for('rate', food_name=dish.name) }}" class="btn">✍️ Write a Review</a>
+    </div>
+  {% endif %}
+
+  {% for review in reviews %}
+    {% if review.content != "" %}
+      <div class="review-card">
+          <span class="rating-stars">{{ review.rating|stars }}</span>
+          <p class="review-date">🕒 {{ review.date.strftime('%b %d, %Y') }}</p>
+          <p>{{ review.content }}</p>
+      </div>
+    {% endif %}
+  {% endfor %}
+
+{% else %}
+  <h2>Sorry, we couldn't find this dish.</h2>
+  <p>It may have been removed or never existed.</p>
+{% endif %}
+</main>
+{% endblock %}
