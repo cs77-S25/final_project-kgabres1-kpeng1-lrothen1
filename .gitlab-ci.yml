@@ -1,6 +1,6 @@
 variables:
   GIT_STRATEGY: clone
-  PROJECT_NAME: "sharpbite"
+  PROJECT_NAME: "swatreview"
 
 default:
   image: docker:24.0.9
