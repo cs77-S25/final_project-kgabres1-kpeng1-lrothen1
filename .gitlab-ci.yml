@@ -1,7 +1,8 @@
 variables:
   GIT_STRATEGY: clone
   PROJECT_NAME: "swatreview"
-
+only:
+  - docker-fix
 default:
   image: docker:24.0.9
   services:
