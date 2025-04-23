@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block head %}
+    {{ super() }}
+    <title>Admin</title>
+<script src="{{ url_for('static', filename='js/admin.js') }}" defer></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/admin.css') }}">
+{% endblock %}
+
+{% block title %} Admin {% endblock %}
+
+
+{%block content %}
+<main>
+    <button id="reset">Reset Menu</button>
+</main>
+
+{% endblock %}
+
+

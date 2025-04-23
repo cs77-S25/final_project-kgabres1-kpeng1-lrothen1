@@ -48,6 +48,7 @@ def sync_from_scraped_db(scraped_db_path='dining.db'):
                 rating=None
             )
             db.session.add(new_dish)
+            #print(new_dish)
 
     db.session.commit()
     conn.close()

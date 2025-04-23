@@ -4,12 +4,12 @@ from flask_cors import CORS
 from models import db, Dish, Review, User
 from werkzeug.security import generate_password_hash, check_password_hash
 from utils import update_dish_rating
-
 from flask_migrate import Migrate
 from sqlalchemy import desc
-
+from apidiningdb import reset_menu_data
 from sqlalchemy import or_, and_
 from flask import request, jsonify
+from utils import sync_from_scraped_db
 
 from datetime import date
 last_rating_reset = {"date": None}
@@ -173,7 +173,11 @@ def get_dishes():
      
     return jsonify([dish.serialize() for dish in dishes])
 
-
+@app.route('/admin')
+def admin():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    return render_template('admin.html')
 
 @app.route('/api/top-dishes')
 def get_top_dishes():
@@ -253,6 +257,11 @@ def filter_items_by_time():
     dishes = query.all()
     return jsonify([dish.serialize() for dish in dishes])
 
+@app.route('/reset-menu', methods=['POST'])
+def reset_menu():
+    message, status_code = reset_menu_data()
+    sync_from_scraped_db()
+    return {message: status_code}
 
 #profile page
 @app.route('/profile')
