@@ -55,6 +55,7 @@ document.querySelector("form").addEventListener("submit", function (event) {
     .then(response => response.json()) // Adjust based on expected response
     .then(data => {
         console.log(data["author_id"]);
+        //window.history.back();
         window.location.href = '/reviews/' + food
     })
 });
