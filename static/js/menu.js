@@ -208,7 +208,7 @@ function toggleDisplay() {
 
       //debug: 
       console.log("Selected Filters:", selectedFilters);
-      console.log("Selected Times:", selectedTimes);
+      //console.log("Selected Times:", selectedTimes);
       console.log("Params:", params.toString());
 
       
@@ -223,9 +223,7 @@ function toggleDisplay() {
       //   selectedTimes.forEach(time => params.append('times', time));
       // }
   
-      const endpoint = selectedTimes.length > 0 ? 
-        '/api/filter-by-time' : 
-        '/api/filter-items';
+      const endpoint = '/api/filter-items';
       
       const response = await fetch(`${endpoint}?${params.toString()}`);
       
