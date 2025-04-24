@@ -5,8 +5,8 @@ services:
       context: .
       dockerfile: ./Dockerfile
     environment:
-    #env_file:
-    #  - .env
+      #env_file:
+      #  - .env
       DOMAIN: https://swatreview.sccs.swarthmore.edu/
     deploy:
       labels:
@@ -17,6 +17,8 @@ services:
         - "traefik.http.routers.swatreview.tls=true"
         - "traefik.http.routers.swatreview.tls.certresolver=letsEncrypt"
         - "traefik.http.services.swatreview.loadbalancer.server.port=5000"
+    volumes:
+      - swatreview-dbdata:./instance
     networks:
       - internal
       - traefik
@@ -26,3 +28,11 @@ networks:
 
   traefik:
     external: true
+
+volumes:
+  swatreview-dbdata:
+    name: swatreview-dbdata
+    driver_opts:
+      type: nfs
+      o: "nfsvers=4,addr=130.58.218.26,rw,nolock,soft"
+      device: ":/volumes/swatreview-dbdata"
