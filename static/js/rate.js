@@ -52,10 +52,18 @@ document.querySelector("form").addEventListener("submit", function (event) {
         },
         body: body
     })
-    .then(response => response.json()) // Adjust based on expected response
+    .then(response => {
+        if (!response.ok) {
+          return response.json().then(err => { throw err });
+        }
+        return response.json();
+      }) // Adjust based on expected response
     .then(data => {
         console.log(data["author_id"]);
         //window.history.back();
         window.location.href = '/reviews/' + food
     })
+    .catch(error => {
+        alert(error.error);
+      });
 });

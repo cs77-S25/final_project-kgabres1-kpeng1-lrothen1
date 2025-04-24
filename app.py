@@ -11,6 +11,7 @@ from sqlalchemy import or_, and_
 from flask import request, jsonify
 from utils import sync_from_scraped_db
 
+
 from datetime import date
 last_rating_reset = {"date": None}
 
@@ -97,6 +98,9 @@ def new_review():
     user_id = session.get('user_id')
     rating = form["rating"]
     print(rating)
+    review = Review.query.filter_by(dish_id=dish.id,date=date.today()).first()
+    if review:
+        return make_response(jsonify({"error": "You have already reviewed this dish today"}), 403)
     #if check_author(author, Thread) > 2:
     # return make_response(error(author)) # return the thread object
     if rating and user_id:   
