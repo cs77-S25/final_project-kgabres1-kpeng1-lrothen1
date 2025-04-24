@@ -18,7 +18,7 @@ services:
         - "traefik.http.routers.swatreview.tls.certresolver=letsEncrypt"
         - "traefik.http.services.swatreview.loadbalancer.server.port=5000"
     volumes:
-      - swatreview-dbdata:./instance
+      - swatreview-dbdata:/instance
     networks:
       - internal
       - traefik
