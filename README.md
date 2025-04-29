@@ -14,7 +14,7 @@ SwatReview is a web application that allows students at Swarthmore College to ex
 ## Team Members
 
 - Kisanet Gabreselassie (`kgabres1`)
-- Kevin Peng (`kpeng1`)
+- Kangze Peng (`kpeng1`)
 - Leo Rothenberg (`lrothen1`)
 
 ## Getting Started

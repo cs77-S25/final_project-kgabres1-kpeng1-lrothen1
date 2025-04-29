@@ -98,7 +98,7 @@ def new_review():
     user_id = session.get('user_id')
     rating = form["rating"]
     print(rating)
-    review = Review.query.filter_by(dish_id=dish.id,date=date.today()).first()
+    review = Review.query.filter_by(dish_id=dish.id,date=date.today(),author_id=user_id).first()
     if review:
         return make_response(jsonify({"error": "You have already reviewed this dish today"}), 403)
     #if check_author(author, Thread) > 2:
