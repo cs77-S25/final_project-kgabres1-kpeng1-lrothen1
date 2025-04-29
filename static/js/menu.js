@@ -223,7 +223,7 @@ function toggleDisplay() {
       //   selectedTimes.forEach(time => params.append('times', time));
       // }
   
-      const endpoint = '/api/filter-items';
+      const endpoint = `/api/filter-items/${mealTime}`;
       
       const response = await fetch(`${endpoint}?${params.toString()}`);
       

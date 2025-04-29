@@ -97,13 +97,12 @@ def new_review():
     dish_id=dish.id
     user_id = session.get('user_id')
     rating = form["rating"]
-    print(rating)
     review = Review.query.filter_by(dish_id=dish.id,date=date.today(),author_id=user_id).first()
     if review:
         return make_response(jsonify({"error": "You have already reviewed this dish today"}), 403)
     #if check_author(author, Thread) > 2:
-    # return make_response(error(author)) # return the thread object
-    if rating and user_id:   
+    # # return make_response(error(author)) # return the thread object
+    if rating != 0 and user_id:   
         new_review = Review(rating=rating, content=content, author_id=user_id, dish_id=dish_id)
         db.session.add(new_review)
         db.session.commit()
@@ -111,6 +110,8 @@ def new_review():
         update_dish_rating(dish_id)
 
         print(f"Added new review: {new_review.serialize()}")
+    else:
+        return make_response(jsonify({"error": "Please select a number of stars"}), 403)
     return make_response(jsonify({"success": "true", "review": new_review.serialize()}), 200)
 
 
@@ -212,21 +213,22 @@ def get_rankings():
 
 # Filtering Route by property! 
 
-@app.route('/api/filter-items', methods=['GET'])
-def filter_items(): 
+@app.route('/api/filter-items/<time>', methods=['GET'])
+def filter_items(time): 
     filters = request.args.getlist('filters') 
     logic = request.args.get('logic', 'any')  
     
     print(f"Filters received: {filters}") 
     print(f"Logic received: {logic}")   
-
-    query = Dish.query.filter_by(itemtoday=True)  
+    if time == 'Any':
+        query = Dish.query.filter_by(itemtoday=True) 
+    else:
+        query = Dish.query.filter_by(itemtoday=True, time=time) 
 
     if filters:
         conditions = []
         for prop in filters:
             conditions.append(Dish.properties.contains(prop))
-        
         if logic == 'all':
             query = query.filter(and_(*conditions))
         else:

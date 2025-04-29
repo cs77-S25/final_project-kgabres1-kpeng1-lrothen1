@@ -1,6 +1,6 @@
 // Get all the star elements
 const stars = document.querySelectorAll('.star');
-let rate;
+let rate = 0;
 
 // Add event listeners to each star
 stars.forEach(star => {

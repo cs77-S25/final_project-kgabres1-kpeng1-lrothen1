@@ -25,7 +25,7 @@ def sync_from_scraped_db(scraped_db_path='dining.db'):
         return
 
     for meal_name, dining_center_name, item, properties in rows:
-        name = item.strip()
+        name = item.strip().replace('/', '')
         location = meal_name.strip()
         time = dining_center_name.strip()
         properties = properties.strip() if properties else ""
