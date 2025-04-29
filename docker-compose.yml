@@ -7,7 +7,6 @@ services:
     environment:
       #env_file:
       #  - .env
-      # test
       DOMAIN: https://swatreview.sccs.swarthmore.edu/
     deploy:
       labels:
